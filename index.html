@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Games</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    /* Intro animado */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #f4f4f9;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* INTRO */
     #intro {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background-color: #000;
       color: #4CAF50;
       display: flex;
@@ -29,19 +37,6 @@
         opacity: 0;
         visibility: hidden;
       }
-    }
-
-    body {
-      background-color: #121212;
-      color: #f4f4f9;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
     }
 
     .header {
@@ -61,7 +56,7 @@
       max-width: 600px;
       padding: 20px;
       text-align: center;
-      margin-top: 60px;
+      margin: 100px auto 0;
       animation: fadeInUp 1s ease-out;
     }
 
@@ -114,12 +109,9 @@
   <!-- Contenido principal -->
   <div class="container">
     <h1>Descargas</h1>
-    <ul id="setupList">
-      <!-- Botones se agregan aquí -->
-    </ul>
+    <ul id="setupList"></ul>
   </div>
 
-  <!-- Script para cargar los botones desde JSON -->
   <script>
     fetch('setups.json')
       .then(response => response.json())
@@ -137,7 +129,7 @@
           setupList.appendChild(li);
         });
       })
-      .catch(error => console.error('Error al cargar setups:', error));
+      .catch(error => console.error('Error al cargar setups.json:', error));
   </script>
 
 </body>
