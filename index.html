@@ -4,63 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
+    /* Intro animado */
     #intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  color: #4CAF50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 60px;
-  font-weight: bold;
-  z-index: 9999;
-  animation: fadeOut 2s ease 2s forwards; /* dura 2s, inicia tras 2s */
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      color: #4CAF50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      font-weight: bold;
+      z-index: 9999;
+      animation: fadeOut 2s ease 2s forwards;
+    }
 
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
 
     body {
-      <div id="intro">
-  <h1>Games</h1>
-</div>
       background-color: #121212;
       color: #f4f4f9;
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
     }
 
     .header {
-      background-color: #1c1c1c;
-      padding: 20px;
-      font-size: 32px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 36px;
       font-weight: bold;
       color: #4CAF50;
     }
 
     .container {
-      padding: 30px;
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 80%;
       max-width: 600px;
-      margin: auto;
+      padding: 20px;
+      text-align: center;
+      margin-top: 60px;
+      animation: fadeInUp 1s ease-out;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     ul {
@@ -69,8 +82,7 @@
     }
 
     li {
-      margin: 10px 0;
-      text-align: center;
+      margin: 15px 0;
     }
 
     button {
@@ -91,41 +103,41 @@
 </head>
 <body>
 
-  <div class="header">🎮 Games</div>
+  <!-- Intro animado -->
+  <div id="intro">
+    <h1>Games</h1>
+  </div>
 
+  <!-- Logo -->
+  <div class="header">Games</div>
+
+  <!-- Contenido principal -->
   <div class="container">
-    <h1>Descargas Disponibles</h1>
+    <h1>Descargas</h1>
     <ul id="setupList">
-      <!-- Aquí se insertan los botones automáticamente -->
+      <!-- Botones se agregan aquí -->
     </ul>
   </div>
 
+  <!-- Script para cargar los botones desde JSON -->
   <script>
-    const setups = [
-      {
-        label: "Fishtrap Optimizado",
-        file: "https://www.mediafire.com/file/j8tvuk5ffsxir6s/setup1.exe/file"
-      },
-      {
-        label: "Kkrieger",
-        file: "https://www.mediafire.com/file/c018dnm5hzz0wrj/setup2.exe/file"
-      }
-    ];
+    fetch('setups.json')
+      .then(response => response.json())
+      .then(setups => {
+        const setupList = document.getElementById('setupList');
 
-    const setupList = document.getElementById('setupList');
-
-    setups.slice(0, 2).forEach(setup => {
-      const li = document.createElement('li');
-      const button = document.createElement('button');
-
-      button.textContent = setup.label;
-      button.onclick = () => {
-        window.open(setup.file, '_blank');
-      };
-
-      li.appendChild(button);
-      setupList.appendChild(li);
-    });
+        setups.slice(0, 2).forEach(setup => {
+          const li = document.createElement('li');
+          const button = document.createElement('button');
+          button.textContent = setup.label;
+          button.onclick = () => {
+            window.location.href = `setups/${setup.file}`;
+          };
+          li.appendChild(button);
+          setupList.appendChild(li);
+        });
+      })
+      .catch(error => console.error('Error al cargar setups:', error));
   </script>
 
 </body>
