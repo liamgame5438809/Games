@@ -14,7 +14,6 @@
       font-family: 'Arial', sans-serif;
     }
 
-    /* INTRO */
     #intro {
       position: fixed;
       top: 0;
@@ -98,39 +97,22 @@
 </head>
 <body>
 
-  <!-- Intro animado -->
+  <!-- Intro animada -->
   <div id="intro">
     <h1>Games</h1>
   </div>
 
-  <!-- Logo -->
+  <!-- Logo superior -->
   <div class="header">Games</div>
 
-  <!-- Contenido principal -->
+  <!-- Contenedor principal -->
   <div class="container">
     <h1>Descargas</h1>
-    <ul id="setupList"></ul>
+    <ul>
+      <li><button onclick="window.location.href='https://gofile.com/link1'">Descargar Juego 1</button></li>
+      <li><button onclick="window.location.href='https://gofile.com/link2'">Descargar Juego 2</button></li>
+    </ul>
   </div>
-
-  <script>
-    fetch('setups.json')
-      .then(response => response.json())
-      .then(setups => {
-        const setupList = document.getElementById('setupList');
-
-        setups.slice(0, 2).forEach(setup => {
-          const li = document.createElement('li');
-          const button = document.createElement('button');
-          button.textContent = setup.label;
-          button.onclick = () => {
-            window.location.href = `setups/${setup.file}`;
-          };
-          li.appendChild(button);
-          setupList.appendChild(li);
-        });
-      })
-      .catch(error => console.error('Error al cargar setups.json:', error));
-  </script>
 
 </body>
 </html>
