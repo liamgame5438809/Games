@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f4f4f9;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #1c1c1c;
+      padding: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">🎮 Games</div>
+
+  <div class="container">
+    <h1>Descargas Disponibles</h1>
+    <ul id="setupList">
+      <!-- Aquí se insertan los botones automáticamente -->
+    </ul>
+  </div>
+
+  <script>
+    const setups = [
+      {
+        label: "Fishtrap Optimizado",
+        file: "https://www.mediafire.com/file/j8tvuk5ffsxir6s/setup1.exe/file"
+      },
+      {
+        label: "Kkrieger",
+        file: "https://www.mediafire.com/file/c018dnm5hzz0wrj/setup2.exe/file"
+      }
+    ];
+
+    const setupList = document.getElementById('setupList');
+
+    setups.slice(0, 2).forEach(setup => {
+      const li = document.createElement('li');
+      const button = document.createElement('button');
+
+      button.textContent = setup.label;
+      button.onclick = () => {
+        window.open(setup.file, '_blank');
+      };
+
+      li.appendChild(button);
+      setupList.appendChild(li);
+    });
+  </script>
+
+</body>
+</html>
